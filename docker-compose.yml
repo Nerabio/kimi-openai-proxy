@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  kimi-proxy:
+    build: .
+    container_name: kimi-proxy
+    ports:
+      - "3000:3000"
+    environment:
+      - KIMI_REFRESH_TOKEN=${KIMI_REFRESH_TOKEN:?err}
+    restart: unless-stopped

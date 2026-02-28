@@ -36,6 +36,9 @@ export async function chatCompletion(req, res) {
       return res.status(401).json({ error: "Authorization header required" });
     }
 
+    const sessionId =
+      req.headers["x-session-id"] || req.body.session_id || null;
+
     if (IS_DEBUG_MODE) {
       console.log("Request body:", req.body);
       console.log("Session ID:", session_id);
@@ -44,8 +47,8 @@ export async function chatCompletion(req, res) {
     // Определяем conversation_id для многоступенчатого диалога
     let conversationId = null;
 
-    if (session_id) {
-      const session = getSession(session_id);
+    if (sessionId) {
+      const session = getSession(sessionId);
       if (session) {
         conversationId = session.conversationId;
         if (IS_DEBUG_MODE) {

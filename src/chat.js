@@ -29,7 +29,7 @@ export async function chatCompletion(req, res) {
 
   if (IS_DEBUG_MODE) {
     console.log("Request body:", req.body);
-    console.log("Chat ID:", chatId);
+    console.log("Chat ID:", id);
   }
 
   if (!TOKEN) {

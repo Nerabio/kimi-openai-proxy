@@ -40,6 +40,10 @@ export async function chatCompletion(req, res) {
 
   const chatId = KEEP_LAST_SESSION ? Session.getSession(id) : uuid();
 
+  if (IS_DEBUG_MODE) {
+    console.log(`chatId --> : ${chatId}`);
+  }
+
   if (LAST_MESSAGE_ONLY) {
     messages = messages.slice(-1);
   }
